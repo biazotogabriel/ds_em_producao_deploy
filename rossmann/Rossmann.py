@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import math
 import datetime
-import locale
 from datetime import timedelta
 
 
@@ -39,9 +38,6 @@ class Rossmann(object):
         df1['promo2_since_week'] = df1['promo2_since_week'].astype(int)
         df1['promo2_since_year'] = df1['promo2_since_year'].astype(int)
         #feature engenering
-        # definir se a loja estava em promoção no dia da venda
-        locale.setlocale(locale.LC_TIME, ('en_US', 'UTF-8'))
-        df1['in_promo'] = df1[['date', 'promo_interval']].apply(lambda x: 1 if x['date'].strftime('%b') in x['promo_interval'].split(',') else 0, axis=1)
         
         return df1
     
